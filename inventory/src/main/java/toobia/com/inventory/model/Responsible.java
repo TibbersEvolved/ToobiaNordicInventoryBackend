@@ -16,6 +16,7 @@ public class Responsible {
     private UUID id;
 
     private String name;
+    
 
     public Responsible(String name) {
         this.name = name;

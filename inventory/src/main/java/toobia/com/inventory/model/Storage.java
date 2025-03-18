@@ -1,8 +1,12 @@
 package toobia.com.inventory.model;
 
+import java.util.List;
+import java.util.UUID;
+
 public class Storage {
 
-    private int id;
+    private UUID id;
     private String name;
-    private String storage_id;
+    private List<Item> items;
+
 }
