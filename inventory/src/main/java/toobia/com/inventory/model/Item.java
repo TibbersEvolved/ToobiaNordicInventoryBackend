@@ -12,7 +12,6 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private String itemId;
     private int amount;
 
     public Item() {}
