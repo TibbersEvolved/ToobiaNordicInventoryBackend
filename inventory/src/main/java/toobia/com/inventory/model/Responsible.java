@@ -15,6 +15,22 @@ public class Responsible {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    private String name;
+
+    public Responsible(String name) {
+        this.name = name;
+    }
+
+    public Responsible() {}
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setId(UUID id) {
         this.id = id;
     }
