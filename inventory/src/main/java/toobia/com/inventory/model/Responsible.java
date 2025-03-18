@@ -1,13 +1,12 @@
 package toobia.com.inventory.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Table(name = "responsible")
 public class Responsible {
 
 
@@ -16,7 +15,9 @@ public class Responsible {
     private UUID id;
 
     private String name;
-    
+
+    @OneToMany(mappedBy = "responsible")
+    private List<Item> items;
 
     public Responsible(String name) {
         this.name = name;
