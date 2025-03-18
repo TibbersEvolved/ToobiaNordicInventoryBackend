@@ -26,7 +26,7 @@ public class ResponsibleService {
         return repository.findById(id).orElse(null);
     }
 
-    public Responsible updateResponsibleName(String name, UUID id) {
+    public Responsible updateResponsibleName(UUID id, String name) {
         Responsible responsible = findResponsible(id);
         responsible.setName(name);
         return repository.save(responsible);

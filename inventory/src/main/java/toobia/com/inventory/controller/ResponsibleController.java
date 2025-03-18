@@ -23,10 +23,19 @@ public class ResponsibleController {
                 fromList(responsibleService.getAllResponsibles());
     }
 
-    @GetMapping("/{name}")
+    @PostMapping("/{name}")
     public ResponsibleDto createResponsible(@PathVariable String name) {
         Responsible responsible = responsibleService.createResponsible(name);
         return new ResponsibleDto(responsible.getId(), responsible.getName());
     }
+
+
+    @PutMapping()
+    public ResponsibleDto updateResponsible(@RequestBody ResponsibleDto responsibleDto) {
+        Responsible responsible = responsibleService.updateResponsibleName(
+                responsibleDto.id(), responsibleDto.name());
+        return new ResponsibleDto(responsible.getId(), responsible.getName());
+    }
+
 
 }
