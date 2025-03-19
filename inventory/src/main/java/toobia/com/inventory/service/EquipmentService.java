@@ -25,7 +25,14 @@ public class EquipmentService {
     }
 
     public Equipment getEquipment(String equipmentId) {
-        return equipmentRepository.findById(equipmentId).get();
+        List<Equipment> ls = equipmentRepository.findAll();
+        Equipment equipment = null;
+        for (Equipment t : ls) {
+            if (equipmentId.equals(t.getEquipmentId())) {
+                equipment = t;
+            }
+        }
+        return equipment;
     }
 
     public void saveEquipment(Equipment equipment) {
