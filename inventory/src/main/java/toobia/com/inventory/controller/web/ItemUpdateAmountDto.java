@@ -1,4 +1,6 @@
 package toobia.com.inventory.controller.web;
 
-public record ItemUpdateAmountDto() {
+import java.util.UUID;
+
+public record ItemUpdateAmountDto(UUID itemId, int amount) {
 }

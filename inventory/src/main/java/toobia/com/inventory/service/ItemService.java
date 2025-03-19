@@ -2,6 +2,7 @@ package toobia.com.inventory.service;
 
 import org.springframework.stereotype.Service;
 import toobia.com.inventory.controller.web.ItemCreateDto;
+import toobia.com.inventory.controller.web.ItemUpdateDto;
 import toobia.com.inventory.model.Equipment;
 import toobia.com.inventory.model.Item;
 import toobia.com.inventory.model.Responsible;
@@ -48,6 +49,21 @@ public class ItemService {
         responsibleService.saveResponsible(responsible);
         return item;
     }
+
+    public Item updateItem(ItemUpdateDto itemUpdateDto) {
+        Item item = findById(itemUpdateDto.storageId());
+        Storage storage = storageService.getStorageById(itemUpdateDto.storageId());
+        Responsible responsible = responsibleService.findResponsible(itemUpdateDto.responsibleId());
+        Equipment equipment = equipmentService.getEquipment(itemUpdateDto.equipmentId());
+        storageService.saveStorage(item.setStorage(storage));
+        equipmentService.saveEquipment(item.setEquipment(equipment));
+        responsibleService.saveResponsible(item.setResponsible(responsible));
+        storageService.saveStorage(storage);
+        equipmentService.saveEquipment(equipment);
+        responsibleService.saveResponsible(responsible);
+        return itemRepository.save(item);
+    }
+
 
     public Item findById(UUID id) {
         return itemRepository.findById(id).orElse(null);

@@ -26,6 +26,10 @@ public class Storage {
         items = new ArrayList<>();
     }
 
+    public void removeItem(Item item) {
+        items.remove(item);
+    }
+
     public UUID getId() {
         return id;
     }

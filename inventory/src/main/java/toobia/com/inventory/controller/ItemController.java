@@ -1,9 +1,7 @@
 package toobia.com.inventory.controller;
 
 import org.springframework.web.bind.annotation.*;
-import toobia.com.inventory.controller.web.ItemCreateDto;
-import toobia.com.inventory.controller.web.ItemDto;
-import toobia.com.inventory.controller.web.ItemListDto;
+import toobia.com.inventory.controller.web.*;
 import toobia.com.inventory.model.Item;
 import toobia.com.inventory.service.ItemService;
 
@@ -36,6 +34,17 @@ public class ItemController {
     @GetMapping("/{id}")
     public ItemDto getItemById(@PathVariable UUID id) {
         return ItemDto.from(itemService.findById(id));
+    }
+
+    @PutMapping("/amount")
+    public ItemDto updateItemAmount(@RequestBody ItemUpdateAmountDto itemUpdateAmountDto) {
+        return ItemDto.from(itemService.setAmount(itemUpdateAmountDto.itemId(), itemUpdateAmountDto.amount()));
+    }
+
+    @PutMapping
+    public ItemDto updateItem(@RequestBody ItemUpdateDto itemUpdateDto) {
+        Item item = itemService.updateItem(itemUpdateDto);
+        return ItemDto.from(item);
     }
 
 }

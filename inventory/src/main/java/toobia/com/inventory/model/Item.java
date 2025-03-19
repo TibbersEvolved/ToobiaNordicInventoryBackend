@@ -42,12 +42,25 @@ public class Item {
         this.amount = amount;
     }
 
-    public void setResponsible(Responsible responsible) {
+    public Responsible setResponsible(Responsible responsible) {
+        Responsible old = this.responsible;
         this.responsible = responsible;
+        old.removeItem(this);
+        return old;
     }
 
-    public void setStorage(Storage storage) {
+    public Storage setStorage(Storage storage) {
+        Storage old = this.storage;
         this.storage = storage;
+        old.removeItem(this);
+        return old;
+    }
+
+    public Equipment setEquipment(Equipment equipment) {
+        Equipment old = this.equipment;
+        this.equipment = equipment;
+        old.removeItem(this);
+        return old;
     }
 
     public UUID getId() {

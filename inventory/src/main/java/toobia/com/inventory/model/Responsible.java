@@ -44,4 +44,8 @@ public class Responsible {
     public void addItem(Item item) {
         items.add(item);
     }
+
+    public void removeItem(Item item) {
+        items.remove(item);
+    }
 }
