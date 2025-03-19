@@ -40,4 +40,9 @@ public class ResponsibleService {
         repository.save(responsible);
     }
 
+    public void deleteResponsible(UUID id) {
+        Responsible responsible = findResponsible(id);
+        repository.delete(responsible);
+    }
+
 }

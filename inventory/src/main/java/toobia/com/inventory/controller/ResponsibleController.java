@@ -6,6 +6,8 @@ import toobia.com.inventory.controller.web.ResponsibleListResponseDto;
 import toobia.com.inventory.model.Responsible;
 import toobia.com.inventory.service.ResponsibleService;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/responsibles")
 @CrossOrigin
@@ -37,5 +39,9 @@ public class ResponsibleController {
         return new ResponsibleDto(responsible.getId(), responsible.getName());
     }
 
+    @DeleteMapping("/{responsibleId}")
+    public void deleteResponsible(@PathVariable UUID responsibleId) {
+        responsibleService.deleteResponsible(responsibleId);
+    }
 
 }

@@ -7,6 +7,7 @@ import toobia.com.inventory.model.Storage;
 import toobia.com.inventory.service.StorageService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin
@@ -28,6 +29,11 @@ public class StorageController {
     public StorageDto addStorage(@PathVariable String name) {
         Storage storage = storageService.createStorage(name);
         return new StorageDto(storage.getName(), storage.getId());
+    }
+
+    @DeleteMapping("/{storageId}")
+    public void deleteStorage(@PathVariable UUID storageId) {
+        storageService.deleteStorage(storageId);
     }
 
 }

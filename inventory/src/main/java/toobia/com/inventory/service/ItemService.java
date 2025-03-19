@@ -69,5 +69,9 @@ public class ItemService {
         return itemRepository.findById(id).orElse(null);
     }
 
+    public void deleteItem(UUID id) {
+        itemRepository.deleteById(id);
+    }
+
 
 }

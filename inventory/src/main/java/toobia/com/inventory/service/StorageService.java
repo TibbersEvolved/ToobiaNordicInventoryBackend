@@ -34,5 +34,9 @@ public class StorageService {
         storageRepository.save(storage);
     }
 
+    public void deleteStorage(UUID id) {
+        storageRepository.deleteById(id);
+    }
+
 
 }

@@ -31,9 +31,9 @@ public class ItemController {
         return ItemListDto.from(items);
     }
 
-    @GetMapping("/{id}")
-    public ItemDto getItemById(@PathVariable UUID id) {
-        return ItemDto.from(itemService.findById(id));
+    @GetMapping("/{itemId}")
+    public ItemDto getItemById(@PathVariable UUID itemId) {
+        return ItemDto.from(itemService.findById(itemId));
     }
 
 
@@ -41,6 +41,11 @@ public class ItemController {
     public ItemDto updateItem(@RequestBody ItemUpdateDto itemUpdateDto) {
         Item item = itemService.updateItem(itemUpdateDto);
         return ItemDto.from(item);
+    }
+
+    @DeleteMapping("/{itemId}")
+    public void deleteItem(@PathVariable UUID itemId) {
+        itemService.deleteItem(itemId);
     }
 
 }
