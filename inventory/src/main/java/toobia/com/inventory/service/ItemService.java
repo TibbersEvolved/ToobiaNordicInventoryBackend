@@ -49,7 +49,7 @@ public class ItemService {
         return item;
     }
 
-    private Item findById(UUID id) {
+    public Item findById(UUID id) {
         return itemRepository.findById(id).orElse(null);
     }
 

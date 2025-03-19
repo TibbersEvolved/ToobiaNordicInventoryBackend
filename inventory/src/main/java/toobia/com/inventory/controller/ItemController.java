@@ -8,6 +8,7 @@ import toobia.com.inventory.model.Item;
 import toobia.com.inventory.service.ItemService;
 
 import java.util.List;
+import java.util.UUID;
 
 @CrossOrigin
 @RestController
@@ -30,6 +31,11 @@ public class ItemController {
     public ItemListDto getAllItems() {
         List<Item> items = itemService.findAll();
         return ItemListDto.from(items);
+    }
+
+    @GetMapping("/{id}")
+    public ItemDto getItemById(@PathVariable UUID id) {
+        return ItemDto.from(itemService.findById(id));
     }
 
 }
