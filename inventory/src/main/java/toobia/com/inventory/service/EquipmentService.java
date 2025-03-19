@@ -24,6 +24,11 @@ public class EquipmentService {
         return equipmentRepository.findAll();
     }
 
+    public void deleteEquipment(String equipmentId) {
+        Equipment equipment = getEquipment(equipmentId);
+        equipmentRepository.delete(equipment);
+    }
+
     public Equipment getEquipment(String equipmentId) {
         List<Equipment> ls = equipmentRepository.findAll();
         Equipment equipment = null;

@@ -29,4 +29,9 @@ public class EquipmentController {
         return equipmentDto;
     }
 
+    @DeleteMapping("/{equipmentId}")
+    public void deleteEquipment(@PathVariable String equipmentId) {
+        equipmentService.deleteEquipment(equipmentId);
+    }
+
 }
