@@ -7,7 +7,7 @@ import toobia.com.inventory.model.Responsible;
 import toobia.com.inventory.service.ResponsibleService;
 
 @RestController
-@RequestMapping("/api/responsible")
+@RequestMapping("/api/responsibles")
 @CrossOrigin
 public class ResponsibleController {
 

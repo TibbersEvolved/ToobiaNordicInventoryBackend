@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/storage")
+@RequestMapping("/api/storages")
 public class StorageController {
 
     private StorageService storageService;

@@ -8,7 +8,7 @@ import toobia.com.inventory.service.EquipmentService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/equipment")
+@RequestMapping("/api/equipments")
 public class EquipmentController {
 
     private EquipmentService equipmentService;
