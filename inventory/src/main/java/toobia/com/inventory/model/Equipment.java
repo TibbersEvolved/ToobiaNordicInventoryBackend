@@ -18,7 +18,7 @@ public class Equipment {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "equipment")
     private List<Item> items;
 
-    public Equipment(String equipmentId, String equipmentName) {
+    public Equipment(String equipmentName, String equipmentId) {
         this.equipmentId = equipmentId;
         this.equipmentName = equipmentName;
         items = new ArrayList<>();
