@@ -15,7 +15,7 @@ public class Storage {
     private UUID id;
     private String name;
 
-    @OneToMany(mappedBy = "storage")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "storage")
     private List<Item> items;
 
     public Storage() {
@@ -36,5 +36,9 @@ public class Storage {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void addItem(Item item) {
+        items.add(item);
     }
 }

@@ -10,10 +10,12 @@ import java.util.UUID;
 @Service
 public class StorageService {
 
+    private final StorageRepository storageRepository;
     private StorageRepository repository;
 
-    public StorageService(StorageRepository repository) {
+    public StorageService(StorageRepository repository, StorageRepository storageRepository) {
         this.repository = repository;
+        this.storageRepository = storageRepository;
     }
 
     public List<Storage> getStorages() {
@@ -26,6 +28,10 @@ public class StorageService {
 
     public Storage createStorage(String name) {
         return repository.save(new Storage(name));
+    }
+
+    public void saveStorage(Storage storage) {
+        storageRepository.save(storage);
     }
 
 

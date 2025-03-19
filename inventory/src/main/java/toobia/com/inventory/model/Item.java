@@ -21,6 +21,9 @@ public class Item {
         this.responsible = responsible;
         this.storage = storage;
         this.amount = amount;
+        equipment.addItem(this);
+        responsible.addItem(this);
+        storage.addItem(this);
     }
 
     @ManyToOne
@@ -35,4 +38,35 @@ public class Item {
     @JoinColumn(name = "storage")
     private Storage storage;
 
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public void setResponsible(Responsible responsible) {
+        this.responsible = responsible;
+    }
+
+    public void setStorage(Storage storage) {
+        this.storage = storage;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public Equipment getEquipment() {
+        return equipment;
+    }
+
+    public Responsible getResponsible() {
+        return responsible;
+    }
+
+    public Storage getStorage() {
+        return storage;
+    }
 }

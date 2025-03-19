@@ -22,7 +22,7 @@ public class ResponsibleService {
         return responsible;
     }
 
-    private Responsible findResponsible(UUID id) {
+    public Responsible findResponsible(UUID id) {
         return repository.findById(id).orElse(null);
     }
 
@@ -34,6 +34,10 @@ public class ResponsibleService {
 
     public List<Responsible> getAllResponsibles() {
         return repository.findAll();
+    }
+
+    public void saveResponsible(Responsible responsible) {
+        repository.save(responsible);
     }
 
 }

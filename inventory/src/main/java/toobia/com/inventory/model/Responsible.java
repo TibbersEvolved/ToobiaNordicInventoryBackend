@@ -16,7 +16,7 @@ public class Responsible {
 
     private String name;
 
-    @OneToMany(mappedBy = "responsible")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "responsible")
     private List<Item> items;
 
     public Responsible(String name) {
@@ -39,5 +39,9 @@ public class Responsible {
 
     public UUID getId() {
         return id;
+    }
+
+    public void addItem(Item item) {
+        items.add(item);
     }
 }

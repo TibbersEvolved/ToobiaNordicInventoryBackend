@@ -1,10 +1,7 @@
 package toobia.com.inventory.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +15,7 @@ public class Equipment {
     private String equipmentId;
     private String equipmentName;
 
-    @OneToMany(mappedBy = "equipment")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "equipment")
     private List<Item> items;
 
     public Equipment(String equipmentId, String equipmentName) {
@@ -53,5 +50,9 @@ public class Equipment {
 
     public void setEquipmentName(String equipmentName) {
         this.equipmentName = equipmentName;
+    }
+
+    public void addItem(Item item) {
+        items.add(item);
     }
 }
