@@ -35,11 +35,7 @@ public class ItemController {
     public ItemDto getItemById(@PathVariable UUID id) {
         return ItemDto.from(itemService.findById(id));
     }
-
-    @PutMapping("/amount")
-    public ItemDto updateItemAmount(@RequestBody ItemUpdateAmountDto itemUpdateAmountDto) {
-        return ItemDto.from(itemService.setAmount(itemUpdateAmountDto.itemId(), itemUpdateAmountDto.amount()));
-    }
+    
 
     @PutMapping
     public ItemDto updateItem(@RequestBody ItemUpdateDto itemUpdateDto) {
