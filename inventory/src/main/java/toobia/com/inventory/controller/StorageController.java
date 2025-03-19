@@ -31,6 +31,12 @@ public class StorageController {
         return new StorageDto(storage.getName(), storage.getId());
     }
 
+    @PutMapping
+    public StorageDto updateStorage(@RequestBody StorageDto storageDto) {
+        Storage storage = storageService.updateStorage(storageDto.id(), storageDto.name());
+        return new StorageDto(storage.getName(), storage.getId());
+    }
+
     @DeleteMapping("/{storageId}")
     public void deleteStorage(@PathVariable UUID storageId) {
         storageService.deleteStorage(storageId);

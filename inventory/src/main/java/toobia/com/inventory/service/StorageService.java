@@ -1,6 +1,7 @@
 package toobia.com.inventory.service;
 
 import org.springframework.stereotype.Service;
+import toobia.com.inventory.controller.web.StorageDto;
 import toobia.com.inventory.model.Storage;
 import toobia.com.inventory.repository.StorageRepository;
 
@@ -24,6 +25,12 @@ public class StorageService {
 
     public Storage getStorageById(UUID id) {
         return repository.findById(id).orElse(null);
+    }
+
+    public Storage updateStorage(UUID id, String name) {
+        Storage storage = repository.findById(id).orElse(null);
+        storage.setName(name);
+        return storageRepository.save(storage);
     }
 
     public Storage createStorage(String name) {
