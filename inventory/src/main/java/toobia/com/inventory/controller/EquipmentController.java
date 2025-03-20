@@ -3,6 +3,7 @@ package toobia.com.inventory.controller;
 import org.springframework.web.bind.annotation.*;
 import toobia.com.inventory.controller.web.EquipmentDto;
 import toobia.com.inventory.controller.web.EquipmentListResponseDto;
+import toobia.com.inventory.exceptions.InventoryBadInput;
 import toobia.com.inventory.model.Equipment;
 import toobia.com.inventory.service.EquipmentService;
 
@@ -33,6 +34,9 @@ public class EquipmentController {
 
     @PostMapping
     public EquipmentDto createEquipment(@RequestBody EquipmentDto equipmentDto) {
+        if (equipmentDto.equipmentId().length() != 6) {
+            throw new InventoryBadInput("Equipment id must be 6 characters");
+        }
         equipmentService.addEquipment(equipmentDto.equipmentName(), equipmentDto.equipmentId());
         return equipmentDto;
     }

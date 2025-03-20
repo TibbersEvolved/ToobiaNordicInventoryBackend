@@ -1,4 +1,6 @@
 package toobia.com.inventory.controller.web;
 
-public record EquipmentDto(String equipmentName, String equipmentId) {
+import jakarta.validation.constraints.Size;
+
+public record EquipmentDto(String equipmentName, @Size(min = 6, max = 6) String equipmentId) {
 }

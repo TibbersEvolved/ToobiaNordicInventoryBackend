@@ -20,7 +20,13 @@ public class InventoryExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({InventoryResourceExists.class})
     protected ResponseEntity handleAlreadyExists(RuntimeException ex, WebRequest request) {
         return handleExceptionInternal(ex, ex.getMessage(),
-                new HttpHeaders(), HttpStatus.valueOf(404), request);
+                new HttpHeaders(), HttpStatus.valueOf(409), request);
+    }
+
+    @ExceptionHandler({InventoryBadInput.class})
+    protected ResponseEntity handleBadInput(RuntimeException ex, WebRequest request) {
+        return handleExceptionInternal(ex, ex.getMessage(),
+                new HttpHeaders(), HttpStatus.valueOf(400), request);
     }
 
 }
