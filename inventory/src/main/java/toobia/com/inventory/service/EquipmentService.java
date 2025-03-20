@@ -1,12 +1,11 @@
 package toobia.com.inventory.service;
 
 import org.springframework.stereotype.Service;
+import toobia.com.inventory.exceptions.InventoryResourceNotFound;
 import toobia.com.inventory.model.Equipment;
-import toobia.com.inventory.model.Item;
 import toobia.com.inventory.repository.EquipmentRepository;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class EquipmentService {
@@ -37,6 +36,9 @@ public class EquipmentService {
             if (equipmentId.equals(t.getEquipmentId())) {
                 equipment = t;
             }
+        }
+        if (equipment == null) {
+            throw new InventoryResourceNotFound(equipmentId + " not found");
         }
         return equipment;
     }

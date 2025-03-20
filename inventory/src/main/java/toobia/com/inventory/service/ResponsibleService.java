@@ -1,6 +1,7 @@
 package toobia.com.inventory.service;
 
 import org.springframework.stereotype.Service;
+import toobia.com.inventory.exceptions.InventoryResourceNotFound;
 import toobia.com.inventory.model.Responsible;
 import toobia.com.inventory.repository.ResponsibleRepository;
 
@@ -23,7 +24,11 @@ public class ResponsibleService {
     }
 
     public Responsible findResponsible(UUID id) {
-        return repository.findById(id).orElse(null);
+        Responsible responsible = repository.findById(id).orElse(null);
+        if (responsible == null) {
+            throw new InventoryResourceNotFound("Responsible with id:" + id.toString() + " not found");
+        }
+        return responsible;
     }
 
     public Responsible updateResponsibleName(UUID id, String name) {

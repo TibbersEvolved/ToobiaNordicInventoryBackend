@@ -3,6 +3,7 @@ package toobia.com.inventory.service;
 import org.springframework.stereotype.Service;
 import toobia.com.inventory.controller.web.ItemCreateDto;
 import toobia.com.inventory.controller.web.ItemUpdateDto;
+import toobia.com.inventory.exceptions.InventoryResourceNotFound;
 import toobia.com.inventory.model.Equipment;
 import toobia.com.inventory.model.Item;
 import toobia.com.inventory.model.Responsible;
@@ -66,7 +67,11 @@ public class ItemService {
 
 
     public Item findById(UUID id) {
-        return itemRepository.findById(id).orElse(null);
+        Item item = itemRepository.findById(id).orElse(null);
+        if (item == null) {
+            throw new InventoryResourceNotFound(id.toString() + " does not exist");
+        }
+        return item;
     }
 
     public void deleteItem(UUID id) {

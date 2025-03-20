@@ -2,6 +2,7 @@ package toobia.com.inventory.service;
 
 import org.springframework.stereotype.Service;
 import toobia.com.inventory.controller.web.StorageDto;
+import toobia.com.inventory.exceptions.InventoryResourceNotFound;
 import toobia.com.inventory.model.Storage;
 import toobia.com.inventory.repository.StorageRepository;
 
@@ -24,7 +25,11 @@ public class StorageService {
     }
 
     public Storage getStorageById(UUID id) {
-        return repository.findById(id).orElse(null);
+        Storage storage = repository.findById(id).orElse(null);
+        if (storage == null) {
+            throw new InventoryResourceNotFound("Storage with id:" + id.toString() + " not found");
+        }
+        return storage;
     }
 
     public Storage updateStorage(UUID id, String name) {
