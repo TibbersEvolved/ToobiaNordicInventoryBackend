@@ -75,7 +75,8 @@ public class ItemService {
     }
 
     public void deleteItem(UUID id) {
-        itemRepository.deleteById(id);
+        Item item = findById(id);
+        itemRepository.delete(item);
     }
 
 
