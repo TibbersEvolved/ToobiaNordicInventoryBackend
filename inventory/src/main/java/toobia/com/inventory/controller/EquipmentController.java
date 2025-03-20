@@ -37,6 +37,11 @@ public class EquipmentController {
         if (equipmentDto.equipmentId().length() != 6) {
             throw new InventoryBadInput("Equipment id must be 6 characters");
         }
+        for (int i = 0; i < equipmentDto.equipmentId().length(); i++) {
+            if (equipmentDto.equipmentId().charAt(i) < 48 || equipmentDto.equipmentId().charAt(i) > 57) {
+                throw new InventoryBadInput("Equipment ID may only contain numbers");
+            }
+        }
         equipmentService.addEquipment(equipmentDto.equipmentName(), equipmentDto.equipmentId());
         return equipmentDto;
     }
