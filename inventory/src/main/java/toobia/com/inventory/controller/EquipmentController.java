@@ -29,6 +29,12 @@ public class EquipmentController {
         return equipmentDto;
     }
 
+    @PutMapping
+    public EquipmentDto updateEquipment(@RequestBody EquipmentDto equipmentDto) {
+        Equipment equipment = equipmentService.getEquipment(equipmentDto.equipmentId());
+        return new EquipmentDto(equipmentDto.equipmentName(), equipmentDto.equipmentId());
+    }
+
     @DeleteMapping("/{equipmentId}")
     public void deleteEquipment(@PathVariable String equipmentId) {
         equipmentService.deleteEquipment(equipmentId);

@@ -6,6 +6,7 @@ import toobia.com.inventory.model.Item;
 import toobia.com.inventory.repository.EquipmentRepository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class EquipmentService {
@@ -42,6 +43,12 @@ public class EquipmentService {
 
     public void saveEquipment(Equipment equipment) {
         equipmentRepository.save(equipment);
+    }
+
+    public Equipment updateEquipment(String id, String name) {
+        Equipment equipment = getEquipment(id);
+        equipment.setEquipmentName(name);
+        return equipmentRepository.save(equipment);
     }
 
 }
