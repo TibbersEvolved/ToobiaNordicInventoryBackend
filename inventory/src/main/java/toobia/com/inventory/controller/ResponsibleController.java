@@ -25,6 +25,12 @@ public class ResponsibleController {
                 fromList(responsibleService.getAllResponsibles());
     }
 
+    @GetMapping("/{id}")
+    public ResponsibleDto getResponsibleById(@PathVariable UUID id) {
+        Responsible responsible = responsibleService.findResponsible(id);
+        return new ResponsibleDto(responsible.getId(), responsible.getName());
+    }
+
     @PostMapping("/{name}")
     public ResponsibleDto createResponsible(@PathVariable String name) {
         Responsible responsible = responsibleService.createResponsible(name);

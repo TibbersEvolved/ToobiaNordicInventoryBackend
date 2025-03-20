@@ -6,6 +6,8 @@ import toobia.com.inventory.controller.web.EquipmentListResponseDto;
 import toobia.com.inventory.model.Equipment;
 import toobia.com.inventory.service.EquipmentService;
 
+import java.util.UUID;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/api/equipments")
@@ -21,6 +23,12 @@ public class EquipmentController {
     public EquipmentListResponseDto getAllEquipment() {
         return EquipmentListResponseDto.toEquipmentListResponseDto
                 (equipmentService.getAllEquipment());
+    }
+
+    @GetMapping("/{id}")
+    public EquipmentDto getEquipmentById(@PathVariable String id) {
+        Equipment equipment = equipmentService.getEquipment(id);
+        return new EquipmentDto(equipment.getEquipmentName(), equipment.getEquipmentId());
     }
 
     @PostMapping

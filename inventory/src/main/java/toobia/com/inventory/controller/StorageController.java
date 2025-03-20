@@ -25,6 +25,12 @@ public class StorageController {
         return StorageListDto.fromList(storageService.getStorages());
     }
 
+    @GetMapping("/{id}")
+    public StorageDto getStorageById(@PathVariable UUID id) {
+        Storage storage = storageService.getStorageById(id);
+        return new StorageDto(storage.getName(), storage.getId());
+    }
+
     @PostMapping("/{name}")
     public StorageDto addStorage(@PathVariable String name) {
         Storage storage = storageService.createStorage(name);
