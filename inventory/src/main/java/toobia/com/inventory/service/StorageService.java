@@ -2,6 +2,7 @@ package toobia.com.inventory.service;
 
 import org.springframework.stereotype.Service;
 import toobia.com.inventory.controller.web.StorageDto;
+import toobia.com.inventory.exceptions.InventoryResourceExists;
 import toobia.com.inventory.exceptions.InventoryResourceNotFound;
 import toobia.com.inventory.model.Storage;
 import toobia.com.inventory.repository.StorageRepository;
@@ -39,6 +40,13 @@ public class StorageService {
     }
 
     public Storage createStorage(String name) {
+        String checkString = name.toLowerCase();
+        List<Storage> storageList = storageRepository.findAll();
+        for (Storage storage : storageList) {
+            if (storage.getName().toLowerCase().equals(checkString)) {
+                throw new InventoryResourceExists(name + " already exists");
+            }
+        }
         return repository.save(new Storage(name));
     }
 

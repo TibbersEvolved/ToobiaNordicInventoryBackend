@@ -1,6 +1,7 @@
 package toobia.com.inventory.service;
 
 import org.springframework.stereotype.Service;
+import toobia.com.inventory.exceptions.InventoryResourceExists;
 import toobia.com.inventory.exceptions.InventoryResourceNotFound;
 import toobia.com.inventory.model.Responsible;
 import toobia.com.inventory.repository.ResponsibleRepository;
@@ -18,6 +19,13 @@ public class ResponsibleService {
     }
 
     public Responsible createResponsible(String responsibleName) {
+        String checkString = responsibleName.toLowerCase();
+        List<Responsible> responsibleList = repository.findAll();
+        for (Responsible responsible : responsibleList) {
+            if (responsible.getName().toLowerCase().equals(checkString)) {
+                throw new InventoryResourceExists(responsibleName + " already exists");
+            }
+        }
         Responsible responsible = new Responsible(responsibleName);
         repository.save(responsible);
         return responsible;
