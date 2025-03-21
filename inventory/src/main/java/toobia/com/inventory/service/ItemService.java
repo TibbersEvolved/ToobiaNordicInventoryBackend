@@ -3,6 +3,7 @@ package toobia.com.inventory.service;
 import org.springframework.stereotype.Service;
 import toobia.com.inventory.controller.web.ItemCreateDto;
 import toobia.com.inventory.controller.web.ItemUpdateDto;
+import toobia.com.inventory.exceptions.InventoryResourceExists;
 import toobia.com.inventory.exceptions.InventoryResourceNotFound;
 import toobia.com.inventory.model.Equipment;
 import toobia.com.inventory.model.Item;
@@ -34,16 +35,20 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public Item setAmount(UUID id, Integer amount) {
-        Item item = findById(id);
-        item.setAmount(amount);
-        return itemRepository.save(item);
-    }
 
     public Item createItem(ItemCreateDto itemCreateDto) {
         Storage storage = storageService.getStorageById(itemCreateDto.storageId());
         Responsible responsible = responsibleService.findResponsible(itemCreateDto.responsibleId());
         Equipment equipment = equipmentService.getEquipment(itemCreateDto.equipmentId());
+        List<Item> items = equipment.getItems();
+        for (Item item : items) {
+            if (item.getEquipment() == equipment && item.getResponsible() == responsible) {
+                if (item.getStorage() == storage) {
+                    throw new InventoryResourceExists("Item with these parameters already exists");
+                }
+            }
+        }
+
         Item item = itemRepository.save(new Item(equipment, responsible, storage, itemCreateDto.amount()));
         equipmentService.saveEquipment(equipment);
         storageService.saveStorage(storage);
